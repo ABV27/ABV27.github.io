@@ -1,0 +1,63 @@
+﻿{% extends "learning_logs/base.html" %}
+{% block content %}
+
+
+<div class="открыть">
+</center> 
+    
+	{% if bbs.цена == 0 %}
+  		<h3>Цена : <font color="#32CD32">Беслатно</font> </h3>
+	{% endif %}
+	{% if bbs.цена != 0 %}
+        	<h3> Цена : {{ bbs.цена }}</h3>
+	{% endif %}
+
+
+
+	<h3>Имя :{{bbs.wner  }}</h3>
+	<h3><span style='font-size:50px;'>&#9742;</span>   Телефон :{{bbs.телефон}}</h3>
+
+	{% if bbs.адрес == None %}
+  		<h3>Адрес:<font color="#32CD32">Отсутствует</font> </h3>
+	{% else %}
+        <h3>Адрес :{{bbs.адрес}}</h3>
+<h3>Просмотры :{{bbs.число}}</h3>
+
+	{% endif %}
+
+       <center>  
+
+ 
+<style>
+   .leftimg {
+    float:left; /* Выравнивание по левому краю */
+    padding: 15px; /* Поля вокруг текста */
+   }
+</style>
+<hr>
+	{% if bbs.фото %}
+              <img  src="{{bbs.фото.url}}" width="250" height="250" class="leftimg">
+	{% endif %}
+<center>
+<h1><p>{{ bbs.товар }}</p></h1>
+<p>{{ bbs.дата }}</p>
+<hr>
+<h4>Описание товара</h4>
+</center>
+<p>{{ bbs.описание_товара|linebreaks}}</p>
+<hr>
+<center>
+
+	
+
+</center>        
+<br>	
+<center>  
+<a href="#" onclick="history.back();return false;"><button class="кнопка_за">Закрыть</button></a>
+</center>
+<br>
+
+</div>
+{% endblock content %}
+
+

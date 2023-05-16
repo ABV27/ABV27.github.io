@@ -1,0 +1,34 @@
+﻿{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+
+{% for й in объявлении %}
+
+<div  class="запись">
+	
+	<div class="фото">
+	{% if й.фото %}
+ 		<img src="{{й.фото.url}}" width="250" height="250">
+	{% endif %}
+	</div>
+	
+	<div class="текст">
+	{% if й.категория.pk == 1 %}
+		<a href="{% url 'learning_logs:открыть_категорию' й.категория.pk %}" ><font color={{цвет.0}}>{{й.категория}}</font></a>
+		{% elif й.категория.pk == 2 %}
+		<a href="{% url 'learning_logs:открыть_категорию' й.категория.pk %}" ><font color={{цвет.1}}>{{й.категория}}</font></a>
+		{% elif й.категория.pk == 3 %}
+		<a href="{% url 'learning_logs:открыть_категорию' й.категория.pk %}" ><font color={{цвет.2}}>{{й.категория}}</font></a>
+	{% endif %}
+	<center><h2 class="qq">{{ й.товар }}</h2></center>
+	<center>{{ й.описание_товара|linebreaks|truncatewords:15 }}</center>
+	<h3>Цена: {{ й.цена }}</h3>
+	Дата: {{ й.дата }}
+	<center><a href="{% url 'learning_logs:открыть' й.pk %}"> <button class="кнопка_от">Открыть</button> </a></center>
+
+	</div>
+	
+</div>
+{% endfor %}
+{% endblock content %}

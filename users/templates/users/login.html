@@ -1,0 +1,17 @@
+﻿{% extends "learning_logs/base.html" %}                           <!шаблон в одном приложении может расширять шаблон из другого приложения.>
+{% block content %}
+
+{% if form.errors %}
+<p> ошибка (комбинация пороля и имени неверноя)  </p>           <!form.errors (выводится сообщение об ошибке)>
+
+{% endif %}
+    
+	  <form method="post" action="{% url 'users:login' %}">   <!Мы хотим, чтобы представление обработало форму, поэтому аргументу action присваивается URL страницы входа>
+  {% csrf_token %}
+	  {{ form.as_p }}                                         <!вывести форму>
+    
+	  <button name="submit">log in</button>              
+	  <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" /> <!включается скрытый элемент формы 'next'; аргумент value сообщает Django, куда перенаправить пользователя после успешно выполненного входа>
+  </form>
+    
+{% endblock content %}

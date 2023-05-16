@@ -1,0 +1,30 @@
+﻿{% extends "learning_logs/base.html" %}
+{% block content %}
+<center>
+	<h1> Привет</font> :{{ user.username }} </h1>
+ 	<h4>На данный момен у вас <font color="#32CD32" size="7">{{ число }}</font> объявления</h4>
+	( Максимальное число объявлени <font color="#ff0000">3</font> )
+</center>
+	<br><br>
+	<div class="w">
+{% for й in bbs %}
+
+ 	<div class="привет">
+	<center><p><h1>{{ й.товар }}</h1></p></center>
+	<p>{{ й.дата }}</p>
+    <center>  
+    {% if й.фото %}
+              <p><img  src="{{й.фото.url}}" width="200" height="200"></p>
+	{% endif %}
+	</center>
+	<h1>Цена : {{ й.цена }} </h1>
+	<center><h3>Оисание товара</h3>	</center>
+	<p>{{ й.описание_товара|linebreaks}}</p>
+    
+	<center><a href="{% url 'learning_logs:удалить' й.pk %}"> <button class="кнопка_уд">удалить</button> </a></center>
+	</div>
+<br>
+
+{% endfor %}
+</div>
+{% endblock content %}

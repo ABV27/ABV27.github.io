@@ -1,0 +1,26 @@
+﻿{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+<center><h1>Категории</h1>
+
+<ol>
+	{% for й in категории %}
+	<div class="категории">
+<li>
+{% if й.pk == 1 %}
+		<a href="{% url 'learning_logs:открыть_категорию' й.pk %}" class="q"><font color={{цвет.0}}>{{й}}</font></a>
+		{% elif й.pk == 2 %}
+		<a href="{% url 'learning_logs:открыть_категорию' й.pk %}" class="q"><font color={{цвет.1}}>{{й}}</font></a>
+		{% elif й.pk == 3 %}
+		<a href="{% url 'learning_logs:открыть_категорию' й.pk %}" class="q"><font color={{цвет.2}}>{{й}}</font></a>
+	{% endif %}
+</li>
+	</div>
+  	{% empty %}
+		Категори отсутствуют
+	{% endfor %}
+</ol>
+</center>
+
+{% endblock content %}

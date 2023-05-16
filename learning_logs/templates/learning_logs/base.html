@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/media/static/main.css">
+</head>
+<body>
+	
+<div class="ссылки">	
+	<a href="{% url 'learning_logs:index' %}"><button>Главная страница</button></a>
+	<a href="{% url 'learning_logs:категории' %}"><button>Категории</button></a>
+	<a href="{% url 'learning_logs:новое_объявление' %}"><button>Добавить объявление</button></a>
+
+	{% if user.is_authenticated %}
+	    	Hello, {{ user.username }}.
+	<a href="{% url 'users:logout' %}"><button>log out</button></a>
+ 		{% else %}
+	<a href="{% url 'users:register' %}"><button>register</button></a>
+	   	<a href="{% url 'users:login' %}"><button>log in</button></a>
+ 		{% endif %}
+	<a href="{% url 'learning_logs:кабинет' %}"><button>кабинет</button> </a>
+
+<form method="POST" action="поиск" >
+        {% csrf_token %}
+        <p>
+            
+            <input type="text" name="имя" />
+	    <input type="submit" value="Поиск" >
+        </p>  
+</form >
+</div>
+
+<div class="block">
+{% block content %}{% endblock content %}
+</div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,11 @@
+﻿{% extends "learning_logs/base.html" %}
+
+{% block content %}
+  <p>Добавить новое объявление</p>
+	  <form action="{% url 'learning_logs:новое_объявление' %}" method='post' enctype="multipart/form-data"> <! Аргумент action сообщает серверу, куда передавать данные, отправленные формай >
+	    {% csrf_token %}                                                <!для предотвращения попыток получения несанкционированного доступа к серверу >
+	    {{ form.as_p }}                                                 <!отображается форма >
+	    <button name="submit">Добавить объявление</button>                        <!Django не создает кнопку отправки данных для форм, поэтому мы определяем ее >
+  </form>
+    
+{% endblock content %}  
